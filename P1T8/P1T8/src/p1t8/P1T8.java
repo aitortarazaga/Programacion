@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 public class P1T8 {
 
     private static Menu m;
+    private static CancelarEvento ce;
     
     public static void main(String[] args) {
         crearMenu();
@@ -39,6 +40,8 @@ public class P1T8 {
         
         hF=hFin + ":" + mFin;
         
+        int cap=Integer.parseInt(capacidad);
+        
         SimpleDateFormat dt= new SimpleDateFormat("hh:mm");
         try{
             if(hSalida.compareToIgnoreCase("Hora:Minutos") != 0)
@@ -56,7 +59,21 @@ public class P1T8 {
             JOptionPane.showMessageDialog(null,pe.getMessage());
         }
         
-        EventoBD.GuardarEvento(nombre,lugar,  hSalida, hF, fecha, capacidad);
+        EventoBD.GuardarEvento(nombre,lugar,  hSalida, hF, fecha, cap);
     }
     
+    
+    public static void apagar(){
+        System.exit(0);
+    }
+    
+    public static void abrirCancelar(){
+        ce=new CancelarEvento();
+        ce.setVisible(true);
+    }
+    
+    
+    public static ArrayList<String> llenarCbEventos(){
+        return EventoBD.llenarCbEventos();
+    }
 }
