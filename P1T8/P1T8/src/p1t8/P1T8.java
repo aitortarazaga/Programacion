@@ -72,6 +72,10 @@ public class P1T8 {
         ce.setVisible(true);
     }
     
+    public static void cerrarCancelar(){
+        ce.dispose();
+    }
+    
     
     public static ArrayList<String> llenarCbEventos(){
         return EventoBD.llenarCbEventos();

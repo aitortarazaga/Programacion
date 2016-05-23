@@ -33,7 +33,7 @@ public class EventoBD {
             GenericoBD.cerrarConexion();
         }
         catch(Exception e){
-            javax.swing. JOptionPane . showMessageDialog (null ," Problemas"+e. getMessage ());
+            javax.swing. JOptionPane . showMessageDialog (null ," Problemas "+e. getMessage ());
         }
     }
     
