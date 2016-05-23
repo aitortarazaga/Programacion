@@ -3,19 +3,23 @@ package t8p1p123;
 import GUI.*;
 import Modelo.BD.*;
 
-import Modelo.UML.Acontecimiento;
+import Modelo.UML.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Controlador {
    
     private static Acontecimiento acontecimiento;
+    private static Persona persona;
+    private static Empresa empresa;
     
     private static AcontecimientoBD abd;
     
     private static VentanaPrincipal vp;
     private static VentanaEventos ve;
+    private static ConfirmarAsistencia ca;
     
     
     
@@ -23,8 +27,7 @@ public class Controlador {
         
         abd = new AcontecimientoBD();
         
-        vp = new VentanaPrincipal();
-        vp.setVisible(true);
+        abrirVentanaPrincipal();
     }
     
     public static void visualizarVentanaAlta(){
@@ -59,6 +62,11 @@ public class Controlador {
    public static String listado() throws Exception{
        return abd.listado();
    }
+   
+   public static ArrayList<Acontecimiento> llenarAcontecimientos() throws Exception{
+       return abd.llenarcbAc(acontecimiento);
+   }
+   
    
    public static void buscarAcontecimiento(String nombre, String operacion) throws Exception{
        // Crear objeto y buscarlo en la base de datos
@@ -99,5 +107,41 @@ public class Controlador {
        Acontecimiento a = abd.busqueda(new Acontecimiento(nombre));
        if (a != null)
            throw new Exception();
+   }
+   
+   
+   public static void abrirCA(){
+       ca=new ConfirmarAsistencia();
+       ca.setVisible(true);
+   }
+   
+   public static void cerrarCA(){
+       ca.dispose();
+   }
+   
+   
+   public static void abrirVentanaPrincipal(){
+       vp = new VentanaPrincipal();
+       vp.setVisible(true);
+   }
+   
+   
+   public static void buscarSitio(Object evento){
+       
+   }
+   
+   
+   public static void guardarAsistente(String nombre, String apellido, String dni, String nombreemp, String ciudad, Object evento){
+       empresa.setCiudad(ciudad);
+       empresa.setNombre(nombreemp);
+       empresa=new Empresa(nombreemp, ciudad);
+       
+       persona.setNombre(nombre);
+       persona.setApellido(apellido);
+       persona.setDni(dni);
+       persona.setEmpresa(empresa);
+       persona.setAc(evento);
+       persona=new Persona(nombre, apellido, dni, empresa);
+       
    }
 }

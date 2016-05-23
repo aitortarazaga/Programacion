@@ -30,6 +30,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         mSalirListado = new javax.swing.JMenuItem();
         mSalirSinListado = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        mConfirmarAsis = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -127,6 +129,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu2.add(mSalirSinListado);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Asistencia");
+
+        mConfirmarAsis.setText("Confirmar asistencia");
+        mConfirmarAsis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mConfirmarAsisActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mConfirmarAsis);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -232,6 +246,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mModificacion.doClick();
     }//GEN-LAST:event_bModificarActionPerformed
 
+    private void mConfirmarAsisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mConfirmarAsisActionPerformed
+        // TODO add your handling code here:
+        Controlador.volver(this);
+        Controlador.abrirCA();
+    }//GEN-LAST:event_mConfirmarAsisActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -272,10 +292,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenuItem mAlta;
     private javax.swing.JMenuItem mBaja;
+    private javax.swing.JMenuItem mConfirmarAsis;
     private javax.swing.JMenuItem mModificacion;
     private javax.swing.JMenuItem mSalirListado;
     private javax.swing.JMenuItem mSalirSinListado;

@@ -7,6 +7,10 @@ public class CampoVacio extends Exception {
     {
         this.mensaje = mensaje;
     }
+
+    public CampoVacio() {
+        
+    }
     
     public String getMensaje(){
         return mensaje;

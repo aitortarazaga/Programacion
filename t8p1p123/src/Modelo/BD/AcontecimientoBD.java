@@ -6,6 +6,7 @@ import Modelo.UML.*;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
+import java.util.ArrayList;
 
 
 public class AcontecimientoBD{
@@ -83,6 +84,22 @@ public class AcontecimientoBD{
            {
                Acontecimiento ac = (Acontecimiento) resultado.next();
                return ac;
+           }
+        return null;
+    }
+    
+    
+    public 
+    
+    
+    public ArrayList<Acontecimiento> llenarcbAc(Acontecimiento a){
+        ArrayList<Acontecimiento> acontec=new ArrayList();
+        ObjectSet resultado = bd.queryByExample(a);
+        if (resultado.hasNext())
+           {
+               Acontecimiento ac = (Acontecimiento) resultado.next();
+               acontec.add(ac);
+               return acontec;
            }
         return null;
     }

@@ -1,6 +1,7 @@
 package Modelo.UML;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -15,6 +16,7 @@ public class Acontecimiento {
     // Utilizo clases distintas para hacerlo de distintas formas.
     
     private Integer aforo;
+    private ArrayList<Persona> personas;
 
     public Acontecimiento() {
     }
@@ -30,6 +32,14 @@ public class Acontecimiento {
         this.horaInicio = horaInicio;
         this.horaFinalizacion = horaFinalización;
         this.aforo = numeroAsistentes;
+    }
+
+    public ArrayList<Persona> getPersonas() {
+        return personas;
+    }
+
+    public void setPersonas(ArrayList<Persona> personas) {
+        this.personas = personas;
     }
 
     public String getNombre() {
