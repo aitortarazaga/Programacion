@@ -126,8 +126,8 @@ public class Controlador {
    }
    
    
-   public static void buscarSitio(Object evento){
-       
+   public static int buscarSitio(Object evento){
+       return abd.buscarSitio(evento);
    }
    
    

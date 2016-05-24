@@ -11,6 +11,7 @@ import t8p1p123.Controlador;
 import Excepciones.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,13 +24,13 @@ public class ConfirmarAsistencia extends javax.swing.JFrame {
      */
     public ConfirmarAsistencia() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
         try{
         ArrayList<Acontecimiento> e = Controlador.llenarAcontecimientos();
         
         for(int x = 0; x < e.size(); x++){
             cbAcontecimientos.insertItemAt(e, x);
-            this.setLocationRelativeTo(null);
         }
         }
         catch(Exception e){
@@ -225,9 +226,12 @@ public class ConfirmarAsistencia extends javax.swing.JFrame {
         // TODO add your handling code here:
         Pattern dniP=Pattern.compile("[7][0-9]{7}[A-Z]");
         Matcher dniM=dniP.matcher(tfDni.getText());
-        
+        boolean error=true;
+        do
+        {
         try{
             if(tfNombre.getText().isEmpty())
+                
                 throw new CampoVacio();
             else
                 if(tfApellido.getText().isEmpty())
@@ -250,17 +254,27 @@ public class ConfirmarAsistencia extends javax.swing.JFrame {
                 else
                     if(cbAcontecimientos.getSelectedItem()==null)
                         throw new CampoVacio();
+                    else
+                        error=false;
                     
         }
         catch(CampoVacio e)
         {
-            javax.swing.JOptionPane.showMessageDialog(this, e.getMensaje());
+            javax.swing.JOptionPane.showMessageDialog(null, "Error, los campos no pueden estar vacios");
         }
         
         catch(FormatoNoValido f)
         {
-            javax.swing.JOptionPane.showMessageDialog(this,f.getMessage());
+            tfDni.setText("");
+            javax.swing.JOptionPane.showMessageDialog(null,"Error, formato no válido");
         }
+        
+        catch(NumberFormatException nfe)
+        {
+            javax.swing.JOptionPane.showMessageDialog(null,nfe.getMessage());
+        }
+        }
+        while(error==false);
         
         Controlador.buscarSitio(cbAcontecimientos.getSelectedItem());
         Controlador.guardarAsistente(tfNombre.getText(), tfApellido.getText(), tfDni.getText(), tfNombreEmp.getText(), tfCiudad.getText(), cbAcontecimientos.getSelectedItem());

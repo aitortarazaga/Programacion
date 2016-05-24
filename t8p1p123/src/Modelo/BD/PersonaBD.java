@@ -16,7 +16,11 @@ public class PersonaBD {
     
     private ObjectContainer bd;
     
-    public void alta(){
+    
+    public PersonaBD(){
         bd = Db4o.openFile("BaseDatos");
+    }
+    public void alta(){
+        
     }
 }

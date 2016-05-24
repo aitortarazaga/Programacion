@@ -6,6 +6,8 @@ import Modelo.UML.*;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -89,7 +91,25 @@ public class AcontecimientoBD{
     }
     
     
-    public 
+    public int buscarSitio(Object evento){
+        String sentencia="SELECT capacidad FROM Eventos WHERE nombre='" + evento + "'";
+        int c=0;
+        
+        try
+        {
+          GenericoBD.abrirConexion();
+          Statement secuencia=GenericoBD.conexion().createStatement();
+          ResultSet capacidad=secuencia.executeQuery(sentencia);
+          if(capacidad.next())
+              c=capacidad.getInt("capacidad");
+          GenericoBD.cerrarConexion();
+        }
+        catch(Exception e)
+        {
+            
+        }
+        return c;
+    }
     
     
     public ArrayList<Acontecimiento> llenarcbAc(Acontecimiento a){
